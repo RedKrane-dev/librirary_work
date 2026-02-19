@@ -1,9 +1,14 @@
-from utils import book_list_view
+from utils import book_list_view, add_book
 
 
 def main(library):
+    # Просмотр всех книг
     book_list_view(library)
 
+    # Добавить новую книгу
+    new_book = add_book('Ведьмак. Последнее желание.', '	Анджей Сапковский', 1986, library)
+
+    book_list_view(library)
 
 library_dict = {
     'Гарри Поттер и философский камень': {

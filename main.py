@@ -1,4 +1,4 @@
-from utils import book_list_view, add_book
+from utils import book_list_view, add_book, remove_book
 
 
 def main(library):
@@ -7,8 +7,12 @@ def main(library):
 
     # Добавить новую книгу
     add_book('Ведьмак. Последнее желание.', 'Анджей Сапковский', 1986, library)
-
     book_list_view(library)
+
+    # Удалить книгу
+    remove_book('Властелин Колец. Братство кольца.', library)
+    book_list_view(library)
+
 
 library_dict = {
     'Гарри Поттер и философский камень': {

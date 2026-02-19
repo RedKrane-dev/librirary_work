@@ -38,10 +38,9 @@ def add_book(title: str, author: str, year: int, library: dict) -> dict:
             if update_choice.lower() == 'да':
                 library[title] = new_book_dict
                 print('Информация о книге обновлена')
-                return library
             else:
                 print('Книга в библиотеке осталась в первозданном виде. Новая книга удалена')
-                return library
+            return library
 
         library.update(new_book_dict)
         print(f'\nКнига "{title}" успешно добавлена в библиотеку')
@@ -49,3 +48,17 @@ def add_book(title: str, author: str, year: int, library: dict) -> dict:
 
     except ValueError:
         print('Ошибка. Передан неподходящий тип данных')
+
+
+def remove_book(title: str, library: dict) -> dict:
+    """
+    - Удаляет книгу из словаря library_dict
+    - Если книга не найдена, выводит сообщение об этом
+    - Возвращает словарь library_dict
+    """
+    if title in library:
+        del library[title]
+        print(f'\nКнига "{title}" успешно удалена из библиотеки')
+    else:
+        print(f'\nКажется, книги "{title}" нет в нашей библиотеке. Операция отменена.')
+    return library

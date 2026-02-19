@@ -22,17 +22,16 @@ def add_book(title: str, author: str, year: int, library: dict) -> dict:
     - Если книга с таким названием уже существует, обновляет информацию о ней
     - Возвращает словарь library_dict
     """
-    new_book_dict = {
-        title.capitalize(): {
-            'author': author.title(),
-            'publication_year': int(year),
-            'is_available': None
+    try:
+        new_book_dict = {
+            title.capitalize(): {
+                'author': author.title(),
+                'publication_year': int(year),
+                'is_available': None
+            }
         }
-    }
 
-    for book_title in library:
-
-        if title.lower() == book_title.lower():
+        if title in library:
             update_choice = input(f'\nКнига "{title}" уже есть в библиотеке.\n'
                                   'Обновить информацию о ней? (да/нет):\n')
 
@@ -44,8 +43,9 @@ def add_book(title: str, author: str, year: int, library: dict) -> dict:
                 print('Книга в библиотеке осталась в первозданном виде. Новая книга удалена')
                 return library
 
-    library.update(new_book_dict)
-    print(f'\nКнига "{title}" успешно добавлена в библиотеку')
+        library.update(new_book_dict)
+        print(f'\nКнига "{title}" успешно добавлена в библиотеку')
+        return library
 
-    return library
-
+    except ValueError:
+        print('Ошибка. Передан неподходящий тип данных')

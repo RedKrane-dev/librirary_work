@@ -112,5 +112,12 @@ def find_book(title: str, library: dict):
         print(f'Название: {title}\n'
               f'Автор: {library[title]["author"]}\n'
               f'Дата публикации: {library[title]["publication_year"]}')
+
+        if library[title]["is_available"] is None:
+            print('Книга в библиотеке, но ее статус не определен')
+        elif library[title]["is_available"]:
+            print('Книга доступна')
+        elif not library[title]["is_available"]:
+            print('Книга выдана')
     else:
         print(f'Кажется, книги "{title}" нет в нашей библиотеке. Операция отменена.\n')

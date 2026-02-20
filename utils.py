@@ -1,4 +1,4 @@
-def book_list_view(library):
+def book_list_view(library: dict):
     """
     Процедура
     - Принимает словарь с книгами
@@ -16,7 +16,7 @@ def book_list_view(library):
         print('В данный момент в библиотеке нет книг')
 
 
-def add_book(title, author, year, library):
+def add_book(title: str, author: str, year: int, library: dict) -> dict:
     """
     - Добавляет книгу в словарь library_dict
     - Если книга с таким названием уже существует, обновляет информацию о ней
@@ -50,7 +50,7 @@ def add_book(title, author, year, library):
         print('Ошибка. Передан неподходящий тип данных')
 
 
-def remove_book(title, library):
+def remove_book(title: str, library: dict) -> dict:
     """
     - Удаляет книгу из словаря library_dict
     - Если книга не найдена, выводит сообщение об этом
@@ -64,7 +64,7 @@ def remove_book(title, library):
     return library
 
 
-def issue_book(title, library):
+def issue_book(title: str, library: dict) -> dict:
     """
     - Отмечает книгу как выданную, 'is_available' становится 'False'
     - Возвращает словарь library_dict
@@ -77,7 +77,7 @@ def issue_book(title, library):
     return library
 
 
-def return_book(title, library):
+def return_book(title: str, library: dict) -> dict:
     """
     - Отмечает книгу как вернувшуюся в библиотеку, 'is_available' становится 'True'
     - Возвращает словарь library_dict

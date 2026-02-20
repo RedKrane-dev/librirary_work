@@ -8,10 +8,12 @@ def book_list_view(library: dict):
 
     if library:
         start_message = '\nКниги нашей библиотеки:'
-
         print(f'{start_message}\n{"-" * len(start_message)}')
+
         for book in library:
             print(book)
+
+        print(f'{"-" * len(start_message)}')
     else:
         print('В данный момент в библиотеке нет книг')
 
@@ -37,17 +39,17 @@ def add_book(title: str, author: str, year: int, library: dict) -> dict:
 
             if update_choice.lower() == 'да':
                 library[title] = new_book_dict
-                print('Информация о книге обновлена')
+                print('Информация о книге обновлена\n')
             else:
-                print('Книга в библиотеке осталась в первозданном виде. Новая книга удалена')
+                print('Книга в библиотеке осталась в первозданном виде. Новая книга удалена\n')
             return library
 
         library.update(new_book_dict)
-        print(f'\nКнига "{title}" успешно добавлена в библиотеку')
+        print(f'Книга "{title}" успешно добавлена в библиотеку\n')
         return library
 
     except ValueError:
-        print('Ошибка. Передан неподходящий тип данных')
+        print('Ошибка. Передан неподходящий тип данных\n')
 
 
 def remove_book(title: str, library: dict) -> dict:
@@ -58,9 +60,9 @@ def remove_book(title: str, library: dict) -> dict:
     """
     if title in library:
         del library[title]
-        print(f'\nКнига "{title}" успешно удалена из библиотеки')
+        print(f'Книга "{title}" успешно удалена из библиотеки\n')
     else:
-        print(f'\nКажется, книги "{title}" нет в нашей библиотеке. Операция отменена.')
+        print(f'Кажется, книги "{title}" нет в нашей библиотеке. Операция отменена.\n')
     return library
 
 
@@ -70,10 +72,15 @@ def issue_book(title: str, library: dict) -> dict:
     - Возвращает словарь library_dict
     """
     if title in library:
-        library[title]['is_available'] = False
-        print(f'\nКнига "{title}" успешно выдана')
+
+        if library[title]['is_available']:
+            library[title]['is_available'] = False
+            print(f'Книга "{title}" успешно выдана\n')
+        else:
+            print(f'Книга {title} уже выдана. Попробуйте в другой день\n')
+
     else:
-        print(f'\nКажется, книги "{title}" нет в нашей библиотеке. Операция отменена.')
+        print(f'Кажется, книги "{title}" нет в нашей библиотеке. Операция отменена.\n')
     return library
 
 
@@ -83,8 +90,13 @@ def return_book(title: str, library: dict) -> dict:
     - Возвращает словарь library_dict
     """
     if title in library:
-        library[title]['is_available'] = True
-        print(f'\nКнига "{title}" успешно возвращена')
+
+        if not library[title]['is_available']:
+            library[title]['is_available'] = True
+            print(f'Книга "{title}" успешно возвращена\n')
+        else:
+            print(f'Книгу {title} уже вернули. Кажется, вы ошиблись библиотекой\n')
+
     else:
-        print(f'\nКажется, книги "{title}" нет в нашей библиотеке. Операция отменена.')
+        print(f'Кажется, книги "{title}" нет в нашей библиотеке. Операция отменена.\n')
     return library

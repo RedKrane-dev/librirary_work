@@ -1,4 +1,4 @@
-def book_list_view(library: dict):
+def book_list_view(library):
     """
     Процедура
     - Принимает словарь с книгами
@@ -16,7 +16,7 @@ def book_list_view(library: dict):
         print('В данный момент в библиотеке нет книг')
 
 
-def add_book(title: str, author: str, year: int, library: dict) -> dict:
+def add_book(title, author, year, library):
     """
     - Добавляет книгу в словарь library_dict
     - Если книга с таким названием уже существует, обновляет информацию о ней
@@ -24,7 +24,7 @@ def add_book(title: str, author: str, year: int, library: dict) -> dict:
     """
     try:
         new_book_dict = {
-            title.capitalize(): {
+            title: {
                 'author': author.title(),
                 'publication_year': int(year),
                 'is_available': None
@@ -50,7 +50,7 @@ def add_book(title: str, author: str, year: int, library: dict) -> dict:
         print('Ошибка. Передан неподходящий тип данных')
 
 
-def remove_book(title: str, library: dict) -> dict:
+def remove_book(title, library):
     """
     - Удаляет книгу из словаря library_dict
     - Если книга не найдена, выводит сообщение об этом
@@ -59,6 +59,32 @@ def remove_book(title: str, library: dict) -> dict:
     if title in library:
         del library[title]
         print(f'\nКнига "{title}" успешно удалена из библиотеки')
+    else:
+        print(f'\nКажется, книги "{title}" нет в нашей библиотеке. Операция отменена.')
+    return library
+
+
+def issue_book(title, library):
+    """
+    - Отмечает книгу как выданную, 'is_available' становится 'False'
+    - Возвращает словарь library_dict
+    """
+    if title in library:
+        library[title]['is_available'] = False
+        print(f'\nКнига "{title}" успешно выдана')
+    else:
+        print(f'\nКажется, книги "{title}" нет в нашей библиотеке. Операция отменена.')
+    return library
+
+
+def return_book(title, library):
+    """
+    - Отмечает книгу как вернувшуюся в библиотеку, 'is_available' становится 'True'
+    - Возвращает словарь library_dict
+    """
+    if title in library:
+        library[title]['is_available'] = True
+        print(f'\nКнига "{title}" успешно возвращена')
     else:
         print(f'\nКажется, книги "{title}" нет в нашей библиотеке. Операция отменена.')
     return library

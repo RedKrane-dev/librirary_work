@@ -1,4 +1,4 @@
-from utils import book_list_view, add_book, remove_book, issue_book, return_book
+from utils import book_list_view, add_book, remove_book, issue_book, return_book, find_book
 
 
 def main(library):
@@ -18,6 +18,9 @@ def main(library):
 
     # Вернуть книгу в библиотеку
     return_book('Ведьмак. Последнее желание.', library)
+
+    # Поиск книги
+    find_book('Гарри Поттер и философский камень', library)
 
 
 library_dict = {

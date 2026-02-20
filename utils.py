@@ -100,3 +100,17 @@ def return_book(title: str, library: dict) -> dict:
     else:
         print(f'Кажется, книги "{title}" нет в нашей библиотеке. Операция отменена.\n')
     return library
+
+
+def find_book(title: str, library: dict):
+    """
+    Процедура
+    - Выводит информацию о книге по ее названию
+    - Если книга не найдена, выводит соответствующее сообщение
+    """
+    if title in library:
+        print(f'Название: {title}\n'
+              f'Автор: {library[title]["author"]}\n'
+              f'Дата публикации: {library[title]["publication_year"]}')
+    else:
+        print(f'Кажется, книги "{title}" нет в нашей библиотеке. Операция отменена.\n')

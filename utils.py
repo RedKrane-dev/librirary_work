@@ -18,7 +18,7 @@ def book_list_view(library: dict):
         print('В данный момент в библиотеке нет книг')
 
 
-def add_book(title: str, author: str, year: int, library: dict) -> dict:
+def add_book(title: str, author: str, year: str, library: dict) -> dict:
     """
     - Добавляет книгу в словарь library_dict
     - Если книга с таким названием уже существует, обновляет информацию о ней
